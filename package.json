@@ -1,0 +1,29 @@
+{
+  "name": "marvin-godwin",
+  "version": "1.0.0",
+  "description": "Final year project for Marvin Godwin",
+  "main": "server.js",
+  "scripts": {
+    "start": "node --watch .js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Solomon-David/Marvin-Godwin.git"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "morgan": "~1.9.1"
+  },
+  "keywords": [
+    "depression",
+    "chatbot",
+    "final year project"
+  ],
+  "author": "Solomon-David Akesobia",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Solomon-David/Marvin-Godwin/issues"
+  },
+  "homepage": "https://github.com/Solomon-David/Marvin-Godwin#readme"
+}
