@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="shortcut icon" href="./assets/ph.jpeg" type="image/jpeg">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <div>
+            <p>Welcome</p>
+            <p>To</p>
+            <p><span>Psy</span>-<span>Help</span></p>
+        </div>
+    </header>
+    <main>
+        
+        <!-- motivation section -->
+        <section class="motivation">
+            <article class="quote">
+                <div><img src="./assets/people.jpeg" alt="" class="people"></div>
+                    <div>
+                        <p class="people">"The mind is a powerful tool. Use it wisely. It can be your greatest ally or your worst enemy."</p>
+                    </div>
+            </article>
+            <article class="quote">
+                <div><img src="./assets/people.jpeg" alt="" class="people"></div>
+                    <div>
+                        <p class="people">"Believe you can and you're halfway there. But the other half is actually doing the work."</p>
+                    </div>
+            </article>
+            <article class="quote">
+                <div><img src="./assets/people.jpeg" alt="" class="people"></div>
+                    <div>
+                        <p class="people">"Happiness is not a destination, but a journey. It's about the small moments of joy along the way."</p>
+                    </div>
+            </article>
+            <div class="formtrigger">
+                <a href="" click="this.preventDefault()" id="openform">
+                    Check yourself
+                </a>
+            </div>
+        </section>
+        <!-- Auth Section -->
+        <section class="auth hidedown">
+            <div class="closeBtn">
+                <button id="closeform">X</button>
+            </div>
+            <form id="authform">
+                
+                <div class="formBtns">
+                    <button type="button" id="loginbtn" class="activebtn">Login</button>
+                    <button type="button" id="signbtn">Sign up</button>
+                </div>
+                <div class="formset">
+                    <div class="login ">
+                        <input type="text" placeholder="Matric no" name="matno" id="matno">
+                        <input type="tel" placeholder="Phone" name="phone" id="phone">
+                        <button type="submit" class="sub">Send</button>
+                        
+                    </div>
+                </div>
+               
+                
+
+            </form>
+        </section>
+    </main>
+    <footer>
+        &copy;2024
+    </footer>
+</body>
+
+<script>
+    // opening the form
+    //auth section
+    var auth = document.getElementsByClassName("auth")[0];
+    //trigger button
+    var open = document.getElementById("openform");
+    //close button
+    var close = document.getElementById("closeform");
+    
+    //function to open or close
+    function toggleClass(e){
+        e.preventDefault();
+        auth.classList.toggle("hidedown");
+        auth.classList.toggle("showup");
+    }
+
+    open.addEventListener("click", toggleClass);
+    close.addEventListener("click", toggleClass);
+    //write code that will make the element slide down and disappear or 
+    // appear and slide up
+
+    // to see show login or signup
+    // variables
+    let loginbtn = document.getElementById("loginbtn");
+    let signbtn = document.getElementById("signbtn");
+    let formset = document.getElementsByClassName("formset")[0];
+
+    // innerhtmls
+    let loginhtml = `   
+                    <div class="login ">
+                    <input type="text" placeholder="Matric no" name="matno" id="matno">
+                    <input type="tel" placeholder="Phone" name="phone" id="phone">
+                    <button type="submit" class="sub">Send</button>
+                </div>`;
+    let signuphtml = `
+                <div class="signup ">
+                    <input type="text" placeholder="Full name" name="fullname" id="fullname">
+                    <input type="text" placeholder="Department" name="department" id="department">
+                    <input type="text" placeholder="Matric no" name="matno" id="matno">
+                    <input type="tel" placeholder="Phone no" name="phone" id="phone">
+                    <input type="num" placeholder="Age" name="age" id="age">
+                    <button type="submit" class="sub">Send</button>
+                </div>`;
+
+    loginbtn.addEventListener("click", function(){
+        loginbtn.classList.toggle("activebtn");            
+        signbtn.classList.toggle("activebtn");            
+        formset.innerHTML = loginhtml;
+    })
+
+    signbtn.addEventListener("click", function(){
+        loginbtn.classList.toggle("activebtn");        
+        signbtn.classList.toggle("activebtn");        
+        formset.innerHTML = signuphtml;
+    })
+
+
+</script>
+</html>
