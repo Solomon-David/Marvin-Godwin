@@ -18,7 +18,7 @@ const pool = mysql.createPool({
 });
 
 pool.query(`CREATE TABLE IF NOT EXISTS users (    id INT AUTO_INCREMENT PRIMARY KEY,    full_name VARCHAR(255) 
-NOT NULL,    matric_number VARCHAR(20) UNIQUE NOT NULL,    department VARCHAR(255) NOT NULL,    phone_number VARCHAR(20)UNIQUE NOT NULL,    date_of_birth DATE NOT NULL)`)
+NOT NULL,    matric_number VARCHAR(20) UNIQUE NOT NULL,    department VARCHAR(255) NOT NULL,    phone VARCHAR(20)UNIQUE NOT NULL,    date_of_birth DATE NOT NULL)`)
 
 function getUser(req){
   const authToken = req.cookies.auth_token;
