@@ -134,7 +134,7 @@ router.post('/signup', (req, res) => {
 
 router.post("/whatsapp", (req,res)=>{
     let user = getUser(req)
-    let message = `Name: ${ user.user.full_name}\n Department: ${ user.user.department}\n Matric No: ${user.user.matric_number}\n Test answers:\n` ;
+    let message = `Name: ${ user.full_name}\n Department: ${ user.department}\n Matric No: ${user.matric_number}\n Test answers:\n` ;
     message+=req.body.message
     console.log("Received:")
     console.log(message)
@@ -144,7 +144,7 @@ router.post("/whatsapp", (req,res)=>{
 
 router.get("/booking", (req,res)=>{
     let user = getUser(req)
-    let message = ` Booking of Appointment \nName: ${ user.user.full_name}\n Department: ${ user.user.department}\n Matric No: ${user.user.matric_number}.` ;
+    let message = ` Booking of Appointment \nName: ${ user.full_name}\n Department: ${ user.department}\n Matric No: ${user.matric_number}.` ;
     
     console.log(message)
     let encoded = encodeURI(message)
