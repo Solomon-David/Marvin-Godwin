@@ -113,7 +113,7 @@ router.post('/signup', (req, res) => {
           res.status(500).send('Error creating user');
         } else {
           // Create JWT token
-          const token = jwt.sign({user}, 'your_secret_key', { expiresIn: '1h' });
+          const token = jwt.sign({user:result}, 'your_secret_key', { expiresIn: '1h' });
           console.log("Recieved ", token)
           // Set JWT token as a cookie
           res.cookie('auth_token', token, { httpOnly: true });
