@@ -11,7 +11,7 @@
     "url": "git+https://github.com/Solomon-David/Marvin-Godwin.git"
   },
   "dependencies": {
-    "cookie-parser": "~1.4.4",
+    "cookie-parser": "1.4.6",
     "debug": "~2.6.9",
     "dotenv": "^16.4.5",
     "express": "^4.21.0",
