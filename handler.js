@@ -113,13 +113,16 @@ router.post('/signup', (req, res) => {
           res.status(500).send('Error creating user');
         } else {
           // Create JWT token
-          console.log("Recieved ", result)
-          const token = jwt.sign({user:result}, 'your_secret_key', { expiresIn: '1h' });
+          pool.query("SELECT * FROM users WHERE id=?", [result.insertId], (err,user)=> {
+
+            console.log("Recieved ", user)
+          const token = jwt.sign({user}, 'your_secret_key', { expiresIn: '1h' });
           // Set JWT token as a cookie
           res.cookie('auth_token', token, { httpOnly: true });
 
           // Redirect to user.html
           res.redirect('/user.html');
+        })
         }
       });
     }
