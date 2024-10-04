@@ -101,7 +101,7 @@ router.post('/signup', (req, res) => {
   pool.query('SELECT * FROM users WHERE phone = ? OR matric_number = ?', [phone, matno], (err, results) => {
     if (err) {
       console.error(err);
-      res.status(500).send('Error checking user existence');
+      res.status(500).send('Error ', err);
     } else if (results.length > 0) {
       // User already exists
       res.status(409).send('User already exists');
