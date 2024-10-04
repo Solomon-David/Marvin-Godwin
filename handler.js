@@ -30,7 +30,7 @@ function getUser(req){
   try {
     const decodedToken = jwt.verify(authToken, 'your_secret_key');
     const user = decodedToken;
-    return user;
+    return user.user;
   } catch (error) {
     console.error('Error decoding token:', error);
     return null; // Return null if token verification fails
@@ -139,16 +139,17 @@ router.post("/whatsapp", (req,res)=>{
     console.log("Received:")
     console.log(message)
     let encoded = encodeURI(message)
-    res.status(200).redirect(`https://wa.me/2${process.env.PSY_NUMBER}3?text=${encoded}`)
+    res.status(200).send(`https://wa.me/${process.env.PSY_NUMBER}?text=${encoded}`)
 })
 
 router.get("/booking", (req,res)=>{
     let user = getUser(req)
+    console.log(user)
     let message = ` Booking of Appointment \nName: ${ user.full_name}\n Department: ${ user.department}\n Matric No: ${user.matric_number}.` ;
-    
+  
     console.log(message)
     let encoded = encodeURI(message)
-    res.status(200).redirect(`https://wa.me/${process.env.PSY_NUMBER}?text=${encoded}`)
+    res.status(200).send(`https://wa.me/${process.env.PSY_NUMBER}?text=${encoded}`)
 })
 
 module.exports = router;

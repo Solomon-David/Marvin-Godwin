@@ -103,11 +103,14 @@
           })
           .then(res => res.text())
           .then(res =>{
-            alert("Submitted")
+            alert("Redirecting")
             console.log(res)
-            // window.location.href=res
+             window.location.href=res
           })
-          .catch(err => console.log("Error: ",err))
+          .catch(err => {
+            console.log("Error: ",err)
+            alert("Error: ",err)
+          })
 
           })
           

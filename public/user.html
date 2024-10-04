@@ -57,8 +57,8 @@
         window.onload = function(){
             fetch("/getuser").then(res=>res.json())
             .then(res => {
-                console.log(res.user)
-                document.getElementById("fullname").textContent=res.user.full_name
+                console.log(res)
+                document.getElementById("fullname").textContent=res.full_name
             });
         }
     </script>
