@@ -136,7 +136,7 @@ router.post("/whatsapp", (req,res)=>{
     console.log("Received:")
     console.log(message)
     let encoded = encodeURI(message)
-    res.status(200).redirect(`https://wa.me/2348135021023?text=${encoded}`)
+    res.status(200).redirect(`https://wa.me/2${process.env.PSY_NUMBER}3?text=${encoded}`)
 })
 
 router.get("/booking", (req,res)=>{
@@ -145,7 +145,7 @@ router.get("/booking", (req,res)=>{
     
     console.log(message)
     let encoded = encodeURI(message)
-    res.status(200).redirect(`https://wa.me/2348135021023?text=${encoded}`)
+    res.status(200).redirect(`https://wa.me/${process.env.PSY_NUMBER}?text=${encoded}`)
 })
 
 module.exports = router;
