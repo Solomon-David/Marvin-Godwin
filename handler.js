@@ -115,8 +115,8 @@ router.post('/signup', (req, res) => {
           // Create JWT token
           pool.query("SELECT * FROM users WHERE id=?", [result.insertId], (err,user)=> {
 
-            console.log("Recieved ", user)
-          const token = jwt.sign({user}, 'your_secret_key', { expiresIn: '1h' });
+            console.log("Recieved ", user[0])
+          const token = jwt.sign({user:user[0]}, 'your_secret_key', { expiresIn: '1h' });
           // Set JWT token as a cookie
           res.cookie('auth_token', token, { httpOnly: true });
 
