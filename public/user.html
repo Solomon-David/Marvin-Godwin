@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/user.css">
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="shortcut icon" href="./assets/ph.jpeg" type="image/jpeg">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Logout button -->
+    <span id="logout">
+        <a href="/logout">Log<br>Out</a>
+    </span>
+    <!-- header -->
+    <header>
+        <div>
+            <p>Welcome</p>
+            <p>To</p>
+            <p><span>Psy</span>-<span>Help</span></p>
+        </div>
+    </header>
+
+    <!-- main -->
+    <main>
+
+        <section class="main">
+            <!-- Welcome part -->
+            <article class="greeting">
+                <p class="greet">Welcome <span id="fullname">Full name</span>.</p>
+                <p class="ask">Please choose and option.</p>
+            </article>
+
+            <!-- options -->
+            <article class="option">
+                <button class="test" onclick='window.location.href="./test.html"'>
+                    <span>Take Test</span>
+                </button>
+            </article>
+            
+            <article class="option">
+                <button class="meeting" onclick='window.location.href="./booking"'>
+                    <span>Book Appointment</span>
+                </button>
+            </article>
+        </section>
+
+    </main>
+
+    <!-- footer -->
+    <footer>
+        &copy;2024
+    </footer>
+
+    <script>
+        window.onload = function(){
+            fetch("/getuser").then(res=>res.json())
+            .then(res => {
+                console.log(res.user)
+                document.getElementById("fullname").textContent=res.user.full_name
+            });
+        }
+    </script>
+</body>
+</html>

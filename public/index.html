@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/index.css">
     <link rel="shortcut icon" href="./assets/ph.jpeg" type="image/jpeg">
     <title>Document</title>
 </head>
@@ -48,7 +49,7 @@
             <div class="closeBtn">
                 <button id="closeform">X</button>
             </div>
-            <form id="authform">
+            <form id="authform" method="post" action="/login">
                 
                 <div class="formBtns">
                     <button type="button" id="loginbtn" class="activebtn">Login</button>
@@ -77,6 +78,8 @@
     // opening the form
     //auth section
     var auth = document.getElementsByClassName("auth")[0];
+    // auth form
+    var authform = document.getElementById("authform");
     //trigger button
     var open = document.getElementById("openform");
     //close button
@@ -105,7 +108,7 @@
                     <div class="login ">
                     <input type="text" placeholder="Matric no" name="matno" id="matno">
                     <input type="tel" placeholder="Phone" name="phone" id="phone">
-                    <button type="submit" class="sub">Send</button>
+                    <button type="submit" id="sublogin" class="sub">Send</button>
                 </div>`;
     let signuphtml = `
                 <div class="signup ">
@@ -113,22 +116,33 @@
                     <input type="text" placeholder="Department" name="department" id="department">
                     <input type="text" placeholder="Matric no" name="matno" id="matno">
                     <input type="tel" placeholder="Phone no" name="phone" id="phone">
-                    <input type="num" placeholder="Age" name="age" id="age">
-                    <button type="submit" class="sub">Send</button>
+                    <input type="date" placeholder="birthdate" name="dob" id="dob">
+                    <button type="submit" id="subsignup" class="sub">Send</button>
                 </div>`;
 
     loginbtn.addEventListener("click", function(){
         loginbtn.classList.toggle("activebtn");            
         signbtn.classList.toggle("activebtn");            
         formset.innerHTML = loginhtml;
+        authform.action="/login"
     })
 
     signbtn.addEventListener("click", function(){
         loginbtn.classList.toggle("activebtn");        
         signbtn.classList.toggle("activebtn");        
         formset.innerHTML = signuphtml;
+        authform.action="/signup"
     })
-
+    const subsignup = document.getElementById("subsignup");
+    const sublogin = document.getElementById("sublogin");
+ 
 
 </script>
 </html>
+
+
+<!-- 
+    set up login route
+ -->
+
+

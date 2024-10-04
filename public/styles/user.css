@@ -1,0 +1,92 @@
+@import url("./style.css");
+
+main{
+    padding: 5% 0;
+    width:100%;
+}
+
+.main{
+    width:100%;
+    display:grid;
+    grid-template-rows: repeat(3,1fr);
+    justify-items: center;
+    justify-content: initial;
+    align-items:flex-start;
+}
+
+.main article{
+    width:80%;
+    display: flex;
+}
+
+/* styling greetings */
+.greeting{
+    align-items:center;
+    flex-direction: column;
+    font-size: calc(1.1 * var(--size));
+    border: 1px solid transparent;
+    border-bottom-color: skyblue;
+}
+
+.greet{
+    margin-bottom: 0.5em;
+}
+
+.ask{
+    margin-top: 0.5em;
+}
+
+#fullname{
+    font-weight: bold;
+}
+
+/* styling options */
+.option{
+    justify-content: center;
+
+}
+
+.option button{
+    display: flex;
+    justify-content: center;
+    flex-basis: 50%;
+    
+    flex-grow: 0.5;
+    padding:3vh 4.5vw;
+    border-radius: 1rem;
+    text-wrap: nowrap;
+}
+
+.test {
+    background-color:var(--light-accent);
+}
+
+ .test:active{
+    background-color:transparent;
+    color:var(--light-accent);
+    border-color:var(--light-accent);
+}
+
+ .test:active span{
+    color:var(--light-accent);
+}
+
+.meeting{
+    background-color: var(--light-main);
+}
+
+.meeting:active{
+    background-color:transparent;
+    border-color:var(--light-main);
+}
+
+ .meeting:active span{
+    color:var(--light-main);
+}
+
+.option span{
+    flex-wrap: nowrap;
+    text-transform: capitalize;
+    font-size: calc(1.4 * var(--size));
+    font-weight: bold;
+}

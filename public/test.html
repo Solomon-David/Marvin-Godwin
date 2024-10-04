@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/test.css">
+    <link rel="shortcut icon" href="./assets/ph.jpeg" type="image/jpeg">
+    <script src="./scripts/questions.js"></script>
+    <title>Document</title>
+
+
+</head>
+<body>
+    <!-- Logout button -->
+    <span id="logout">
+        <a href="/logout">Log<br>Out</a>
+    </span>
+    <!-- header -->
+    <header>
+        <div>
+            <p><span>Psy</span>-<span>Help</span></p>
+            <p>Mental Health Assessment</p>
+        </div>
+    </header>
+
+    <!-- main -->
+    <main>
+      <section class="main">
+        <form >
+          <div  id="questionsContainer"></div>
+          <div class="subbtn">
+            <button type="submit">Submit</button>
+          </div>
+        </form>
+      </section>
+    </main>
+  
+    <footer>
+      &copy;2024
+    </footer>
+  
+    <template id="questionTemplate">
+      <fieldset class="field">
+        <p class="question"></p>
+        <div class="answers"></div>
+      </fieldset>
+    </template>
+  
+    <template id="answerTemplate">
+      <div class="answer">
+        <input class="radios" type="radio" name="">
+        <label class="option" for=""></label>
+      </div>
+    </template>
+  
+    <script>
+      window.onload = function() {
+        const questionTemplate = document.getElementById("questionTemplate");
+        const answerTemplate = document.getElementById("answerTemplate");
+        const questionsContainer = document.getElementById("questionsContainer");
+  
+        depressionQuestions.forEach((question, questionIndex) => {
+          const fieldset = questionTemplate.content.cloneNode(true);
+          const answersContainer = fieldset.querySelector(".answers");
+  
+          fieldset.querySelector(".question").textContent = question.text;
+  
+          question.options.forEach((option, index) => {
+            const answer = answerTemplate.content.cloneNode(true);
+            answer.querySelector(".option").textContent = option;
+            answer.querySelector(".radios").value = question.scoring[index];
+            answer.querySelector(".radios").name = `q${questionIndex}`; // Dynamically generate the name
+            answersContainer.appendChild(answer);
+          });
+  
+          questionsContainer.appendChild(fieldset);
+        });
+        
+        const form = document.querySelector("form");
+      form.addEventListener("submit", function(e){
+        e.preventDefault()
+
+        let message = ""
+          let questions = document.querySelectorAll(".question")
+          let answers = document.querySelectorAll(".answers");
+
+          questions.forEach((elem,i)=>{
+            answers[i].querySelectorAll(".answer").forEach((answer,j)=>{
+              if(answer.querySelector("input").checked){
+                let question = questions[i].textContent;
+                let selected = answer.querySelector("label").textContent;
+                
+                message+=`${question} : ${selected}.\n`
+              }
+            })
+          })
+            
+            fetch("/whatsapp",{
+            method:"POST",
+            headers: { "Content-Type":"application/json"},
+            body:JSON.stringify({message:message})
+          })
+          .then(res => res.text())
+          .then(res =>{
+            alert("Submitted")
+            console.log(res)
+            // window.location.href=res
+          })
+          .catch(err => console.log("Error: ",err))
+
+          })
+          
+        };
+       
+    </script>
+  </body>
+  </html>

@@ -1,0 +1,167 @@
+/* main.css */
+@import url('./styles.css');
+
+main{
+    padding: 5%;
+    width:90%;
+}
+
+.quote{
+    display: flex;
+    gap:5%;
+    align-items: center;
+}
+
+.quote p.people{
+    text-align: justify;
+}
+
+.quote div:has(img.people){
+    clip-path: fill-box;
+    border-radius: 5px 5px 10px 10px ;
+}
+
+.quote:nth-last-of-type(even){
+    flex-direction: row-reverse;
+}
+
+.quote div:has(img){
+    width:5rem;    
+    height: auto;
+    
+}
+
+img{
+    width:inherit;
+    height: auto;
+}
+
+/* the trigger for opening the form */
+.formtrigger{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+/* for opened element */
+.showup{
+    transform:scaleY(1);
+}
+
+/* for closing element */
+.hidedown{
+    transform-origin:center bottom;
+    transform:scaleY(0);
+    transition: 0.1s;
+}
+
+/* auth form */
+.auth{
+    position:absolute;
+    z-index: 2;
+    bottom:0%;
+    width:90%;
+    height:80%;
+    background-color: var(--bluewhite);
+}
+
+#authform{
+    padding:5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#authform>*{
+    width:90%;
+    display: flex;
+    justify-content: center;
+    margin-top:0;
+    margin-bottom: 0;
+}
+
+
+/* close button */
+.closeBtn{
+    padding: 5%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+#closeform{
+    color:red;
+    font-size: calc(2 * var(--size));
+}
+
+.formBtns{
+    display: flex;
+    justify-content: flex-start !important; 
+}
+
+.formBtns button{
+    padding:1em;
+    background-color: transparent;
+    border: none;
+    font-size: var(--size);
+}
+
+.formBtns .activebtn{
+    color:var(--main);
+    background-color: var(--white);    
+}
+
+.formset{
+    padding: 5.5% 0;
+    background-color: var(--white);
+}
+.formset div > *{
+    border-radius: 5px;
+    margin: 3% 0;
+}
+
+.formset input:focus{
+    border:0.1em solid var(--main);
+    outline:0.1em solid var(--main);
+}
+
+.formset input{
+    border:0.1em solid black;
+}
+
+.login, .signup{
+    width: inherit;
+    min-height: 30vh;
+    display: grid;
+    align-content: space-between;
+    justify-items: stretch;
+}
+
+.login{
+    grid-template-rows: repeat(3, 1fr);
+}
+
+.signup{
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+}
+
+.login input{
+    padding:2.5% 2.5% 7% 2.5%;
+}
+
+.signup input, .signup button{
+    padding:2.5% 5%;
+    width:80%;
+    justify-self: center;
+}
+
+
+.formset .sub{
+    border:2px solid var(--main);
+    padding:2.5% 20%;
+    color:  var(--main);
+    background-color: var(--white);
+    font-size: calc(1.5 * var(--size));
+    justify-self: center;
+}

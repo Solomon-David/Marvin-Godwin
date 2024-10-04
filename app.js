@@ -3,8 +3,8 @@ const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
-const router = require('./handler.js');
-
+const router = require('./handler');
+ 
 dotenv.config(); // Load environment variables from .env file
  
 const app = express();
