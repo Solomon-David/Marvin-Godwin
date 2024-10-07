@@ -22,11 +22,19 @@
             <p><span>Psy</span>-<span>Help</span></p>
             <p>Mental Health Assessment</p>
         </div>
+
+        
     </header>
 
     <!-- main -->
     <main>
+      
       <section class="main">
+        <article class="greeting">
+          <p class="greet">Welcome <span id="fullname">Full name</span>.</p>
+          <p class="greet">Answer the following questions</p>
+      </article>
+
         <form >
           <div  id="questionsContainer"></div>
           <div class="subbtn">
@@ -53,9 +61,17 @@
         <label class="option" for=""></label>
       </div>
     </template>
+
+    
   
     <script>
       window.onload = function() {
+        fetch("/getuser").then(res=>res.json())
+            .then(res => {
+                console.log(res)
+                document.getElementById("fullname").textContent=res.full_name
+            });
+
         const questionTemplate = document.getElementById("questionTemplate");
         const answerTemplate = document.getElementById("answerTemplate");
         const questionsContainer = document.getElementById("questionsContainer");
@@ -78,44 +94,71 @@
         });
         
         const form = document.querySelector("form");
-      form.addEventListener("submit", function(e){
+
+        const dialog = document.getElementById("dialog");
+        const close = dialog.querySelector("#close");
+        const submit = dialog.querySelector("#submit");
+
+      submit.addEventListener("click", function(e){
         e.preventDefault()
-
         let message = ""
-          let questions = document.querySelectorAll(".question")
-          let answers = document.querySelectorAll(".answers");
+        let questions = document.querySelectorAll(".question")
+        let answers = document.querySelectorAll(".answers");
 
-          questions.forEach((elem,i)=>{
-            answers[i].querySelectorAll(".answer").forEach((answer,j)=>{
-              if(answer.querySelector("input").checked){
-                let question = questions[i].textContent;
-                let selected = answer.querySelector("label").textContent;
-                
-                message+=`${question} : ${selected}.\n`
-              }
-            })
+        questions.forEach((elem,i)=>{
+          answers[i].querySelectorAll(".answer").forEach((answer,j)=>{
+            if(answer.querySelector("input").checked){
+              let question = questions[i].textContent;
+              let selected = answer.querySelector("label").textContent;
+              
+              message+=`${question} : ${selected}.\n`
+            }
           })
-            
-            fetch("/whatsapp",{
-            method:"POST",
-            headers: { "Content-Type":"application/json"},
-            body:JSON.stringify({message:message})
-          })
-          .then(res => res.text())
-          .then(res =>{
-            alert("Redirecting")
-            console.log(res)
-             window.location.href=res
-          })
-          .catch(err => {
-            console.log("Error: ",err)
-            alert("Error: ",err)
-          })
-
-          })
+        })
           
-        };
+          fetch("/whatsapp",{
+          method:"POST",
+          headers: { "Content-Type":"application/json"},
+          body:JSON.stringify({message:message})
+        })
+        .then(res => res.text())
+        .then(res =>{
+          alert("Redirecting")
+          console.log(res)
+            window.location.href=res
+        })
+        .catch(err => {
+          console.log("Error: ",err)
+          alert("Error: ",err)
+        })
+      });
+
+      const subbtn = document.querySelector(".subbtn button[type='submit']");
+
+      subbtn.addEventListener("click",(e)=>{
+        e.preventDefault();
+        dialog.showModal()
+      });
+      
+      close.addEventListener("click",(e)=>{
+        e.preventDefault();
+        dialog.close();
+      });
+      
+
+     
+      };
        
     </script>
   </body>
+  <dialog id="dialog">
+    <div id="motivation">
+      <p>
+        Don’t let the clouds of doubt overshadow your sunshine. Remember, every storm eventually passes, revealing a brighter
+        sky. Keep your head up, your spirits high, and believe in the strength within you. You’ve got this!
+      </p>
+    </div>
+    <div id="suggestion">It is recommended that you speak to a professional. Would you like to speak to them now?</div>
+    <div id="choice"><button id="close">Later.</button><button id="submit">Yes, I do.</button></div>
+  </dialog>
   </html>

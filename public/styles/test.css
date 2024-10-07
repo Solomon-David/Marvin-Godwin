@@ -1,18 +1,25 @@
 @import url("./style.css");
 
+body{
+    grid-template-rows: 3fr 6fr 1fr;
+}
 
 .main{
-    padding:  0;
+
+    flex-direction:column;
+    justify-content: center;
+    height:100%;
     width:100%;    
 }
 
 form{
-    height:95%;
-    width:90%;
+    height:80%;
+    width:65vw;
     padding:0;
-    display:flex;
-    flex-direction: column;
-    justify-content: flex-end;
+    display:grid;
+    grid-template-rows:5fr 2fr;
+    justify-content: center;
+    align-items: flex-end;
     margin:auto;
     row-gap: 2.5vh;
 
@@ -20,45 +27,66 @@ form{
 }
 
 #questionsContainer {
-    height:60vh;
-    overflow-y: scroll;
-    padding: 1rem;
+    position: relative;
+    padding:0;
+    display:grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: repeat(10,1fr);
+    gap:10%;
+    overflow-x: scroll;
+    height:50vh;
     border:0.25px solid lightgrey;
     border-radius: 5px;
   }
 
   #questionsContainer::-webkit-scrollbar {
-  width: 5px;
-  background-color: #f0f0f0; /* Light gray background */
-}
-
+      width: 5px;
+      background-color: #f0f0f0; /* Light gray background */
+    }
+    
 #questionsContainer::-webkit-scrollbar-thumb {
   background-color: var(--light-main); /* Blue thumb color */
   border-radius: 3px; /* Rounded corners */
 }
 
   .field{
-    border:none;
-    display: grid;
-    grid-template-columns: 1fr 0.7fr;
-    justify-items: stretch;
+    margin:0 5%;
+    /* padding: 0 2rem; */
+    background-color: inherit;
+    border: none;
+    border-left:1px solid grey;
+    display: flex;
+    flex-direction: column;
+    font-size: 3vh;
 }
 
+
+
 .answers{
+    padding:0;
+    margin-left:0;
     display: grid;
-    grid-template-rows: repeat(4,1fr);
     grid-template-columns: 1fr;
-    justify-items: start;
+    grid-template-rows: repeat(4,1fr);
+    row-gap:10%;
 }
 
 .question{
-    margin-block: 0;
+    text-align: start;
+    width:90%;
+    margin-block: 10%;
+    line-height: 1.25em;
 }
 
 .answer{
     display: flex;
     text-wrap: nowrap;
     text-align: justify;
+}
+
+.answer input[type="radio"]{
+    width: 1.3rem;
+    height: 1.3rem;
 }
 
 .subbtn{
@@ -71,31 +99,119 @@ form{
 
 .subbtn button{
     padding:1rem;
-    width: 60%;
+    width: 100%;
     border-radius: 5px;
     font-size: 1rem;
     color: white;
     background-color: var(--main);
 }
 
+#dialog{
+    border:0.5px solid var(--main);
+    border-radius: 0.8rem;
+    width:60vw;
+    height:60vh;
+    display:flex;
+    flex-direction: column;
+    font-size: 1rem;
+    justify-content: center;
+    top:5%;
+    gap:2.5%;
+    text-align: justify;
+}
+
+
+
+#dialog {
+    display: none;
+  }
+  
+  #dialog[open] {
+    display: block;
+  }
+
+
+#choice{
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 5vh;
+}
+
+#choice button{
+    padding:1rem;
+   
+    border-radius: 0.1rem;
+}
+
+#choice #close{
+     color: var(--main);
+    background-color:white;
+    border-color: var(--main);
+}
+
+#choice #submit{
+     background-color: var(--accent);
+    color:white;
+    border-color: var(--accent);
+}
+
+.greeting{
+    display: flex;
+    align-items:center;
+    flex-direction: column;
+    font-size: calc(1.1 * var(--size));
+    margin:1em;
+}
+
+.greet{
+    font-size: 3vh;
+    margin: 0;
+}
+
+.ask{
+    margin-top: 0.5em;
+}
+
+#fullname{
+    font-weight: bold;
+}
+
+
 @media screen and (min-width:500px) {
     .main{
-        width: 90%;
-        flex-direction: row;
         justify-content: center;
         align-items: center;
     }
     form{
         width: 50%;
         height:90%;
+    }
 
+    #questionsContainer{
+        grid-template-columns: 1fr;
+    grid-template-rows: repeat(10,1fr);
+    }
+
+    .field{
+        width:100%;
+        padding:0;
+        margin: 0;
+        align-items: center;
+        border:none;
     }
 
     .answers{
         grid-template-columns:1fr 1fr ;
         grid-template-rows:1fr 1fr;
-        row-gap: 0.5em;
-        column-gap: 0%;
+        justify-items: flex-start;
+        row-gap: 2em;
+        column-gap: 3em;
         
     }
+    
+    #dialog{
+    width:40vw;
+    height:60vh;
+    font-size: 2rem;
+}
 }

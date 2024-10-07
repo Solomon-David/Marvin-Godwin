@@ -84,7 +84,7 @@ router.post('/login', (req, res) => {
       res.cookie('auth_token', token, { httpOnly: true });
 
       // Redirect to user.html
-      res.redirect('/user.html');
+      res.redirect('/test.html');
     }
   });
 });
@@ -121,7 +121,7 @@ router.post('/signup', (req, res) => {
           res.cookie('auth_token', token, { httpOnly: true });
 
           // Redirect to user.html
-          res.redirect('/user.html');
+          res.redirect('/test.html');
         })
         }
       });
